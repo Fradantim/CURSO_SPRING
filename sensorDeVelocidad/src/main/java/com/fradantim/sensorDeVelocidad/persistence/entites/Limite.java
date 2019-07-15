@@ -21,17 +21,43 @@ public class Limite extends AbsEntity{
 	@Column (name= "VALUE")
 	private Float value; 
 	
-	@Enumerated
 	@Column (name= "TIPO_VEHICULO")
 	private String tipoVehiculo;
 	
-	@Enumerated
 	@Column (name= "TIPO_CLIMA")
 	private String tipoClima;
 
+	public Limite() {}
+	
 	public Limite(Float value, String tipoVehiculo, String tipoClima) {
 		this.value = value;
 		this.tipoVehiculo = tipoVehiculo;
 		this.tipoClima = tipoClima;
 	}
+
+	public Float getValue() {
+		return value;
+	}
+
+	public void setValue(Float value) {
+		this.value = value;
+	}
+
+	public String getTipoVehiculo() {
+		return tipoVehiculo;
+	}
+
+	public void setTipoVehiculo(String tipoVehiculo) {
+		this.tipoVehiculo = tipoVehiculo;
+	}
+
+	public String getTipoClima() {
+		return tipoClima;
+	}
+
+	public void setTipoClima(String tipoClima) {
+		this.tipoClima = tipoClima;
+	}
+	
+	
 }

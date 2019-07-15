@@ -2,7 +2,6 @@ package com.fradantim.sensorDeVelocidad.persistence.entites;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Enumerated;
 import javax.persistence.Table;
 
 @Entity
@@ -19,7 +18,7 @@ public class Limite extends AbsEntity{
 	}*/
 	
 	@Column (name= "VALUE")
-	private Float value; 
+	private Integer value; 
 	
 	@Column (name= "TIPO_VEHICULO")
 	private String tipoVehiculo;
@@ -29,17 +28,17 @@ public class Limite extends AbsEntity{
 
 	public Limite() {}
 	
-	public Limite(Float value, String tipoVehiculo, String tipoClima) {
+	public Limite(Integer value, String tipoVehiculo, String tipoClima) {
 		this.value = value;
 		this.tipoVehiculo = tipoVehiculo;
 		this.tipoClima = tipoClima;
 	}
 
-	public Float getValue() {
+	public Integer getValue() {
 		return value;
 	}
 
-	public void setValue(Float value) {
+	public void setValue(Integer value) {
 		this.value = value;
 	}
 

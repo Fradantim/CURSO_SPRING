@@ -1,5 +1,6 @@
 package com.fradantim.sensorDeVelocidad.persistence.entites;
 
+import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -10,6 +11,7 @@ public abstract class AbsEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name="ID")
 	protected Long id;
 
 	public Long getId() {

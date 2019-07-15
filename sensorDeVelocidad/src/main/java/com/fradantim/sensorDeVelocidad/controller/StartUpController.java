@@ -12,7 +12,9 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Component;
 
 import com.fradantim.sensorDeVelocidad.persistence.entites.Limite;
+import com.fradantim.sensorDeVelocidad.persistence.entites.Ticket;
 import com.fradantim.sensorDeVelocidad.persistence.service.LimiteService;
+import com.fradantim.sensorDeVelocidad.persistence.service.TicketService;
 
 import sensorclima.TipoClima;
 import sensorvelocidad.DatosVehiculo;
@@ -31,6 +33,9 @@ public class StartUpController implements InitializingBean {
 	@Autowired
 	private LimiteService limiteService;
 
+	@Autowired
+	private TicketService ticketService;
+	
 	@Override
 	public void afterPropertiesSet() throws Exception {
 		cargarBBDD();
@@ -48,7 +53,7 @@ public class StartUpController implements InitializingBean {
 				String line = reader.readLine();
 				while (line != null) {
 					String[] campos = line.split(CSV_DELIMITER);
-					Limite limite = new Limite(new Float(campos[INDEX_VALUE]), campos[INDEX_TIPO_VEHICULO],  campos[INDEX_CLIMA]); 
+					Limite limite = new Limite(new Integer(campos[INDEX_VALUE]), campos[INDEX_TIPO_VEHICULO],  campos[INDEX_CLIMA]); 
 					limiteService.save(limite);
 					line = reader.readLine();					
 				}
@@ -78,9 +83,17 @@ public class StartUpController implements InitializingBean {
 				System.out.println("No se encontro limite!!!!!!! ----------");
 			} else {
 				System.out.println("\tLimite encontrado:"+limite.getValue());
+				if(datosVehiculo.velocidadMedida > limite.getValue() ) {
+					System.out.println("\tVehiculo supera limite! (+"+(datosVehiculo.velocidadMedida-limite.getValue())+")");
+					Ticket t = new Ticket(datosVehiculo.patente, datosVehiculo.velocidadMedida, datosVehiculo.tipoVehiculo.name(), limite);
+					ticketService.save(t);
+					System.out.println("\tTicket guardado~~~");
+				} else {
+					
+				}
 			}
 			index++;
-			//TODO COMPARAR VELOCIDAD Y GUARDAR
+			
 			System.out.println();
 		}
 	}

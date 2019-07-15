@@ -1,0 +1,49 @@
+Ejercicio sensor de velocidad
+
+Se requiere que en virtud de un sensor de velocidad que brinda datos
+de los vehiculos que transitan por determinada autovia.
+
+Se labren actas de transito llamadas "tickets" cada vez que un vehiculo
+supere los limites de velocidad establecidos en la siguiente tabla.
+
+En condiciones climaticas normales
+
+Los limites establecidos son:
+
+Autos: 130
+Moto: 130
+Camion: 90
+Tractor: 60
+
+En condiciones climaticas de lluvia moderada
+los limites establecidos son:
+
+Autos: 110
+Moto: 110
+Camion: 80
+Tractor: 60
+
+En condiciones climaticas de lluvia torrencial
+los limites establecidos son:
+
+Autos: 90
+Moto: 90
+Camion: 70
+Tractor: 60
+
+Asi mismo, los dias domingos, dado que el transito de camiones
+es limitado hay una tolerancia de 10 % de exceso de velocidad a toda
+la tabla para todas las condiciones climaticas.
+
+Con respecto a las actas.
+
+Superar el limite de velocidad en 10% implica una multa de 1000.-
+Superar el limite de velocidad en 20% implica una multa de 5000.-
+
+Las actas llamadas "tickets", deben guardarse en formato JSON
+y en MySQL.
+
+Se debe loggear toda la actividad de transito.
+
+Si la conneccion a MySQL falla, se debera hacer una sincronizacion con
+los datos de los tickets, en un proceso aparte.

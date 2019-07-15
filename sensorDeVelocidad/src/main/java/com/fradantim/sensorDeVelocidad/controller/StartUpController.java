@@ -83,7 +83,7 @@ public class StartUpController implements InitializingBean {
 				System.out.println("No se encontro limite!!!!!!! ----------");
 			} else {
 				System.out.println("\tLimite encontrado:"+limite.getValue());
-				if(datosVehiculo.velocidadMedida > limite.getValue() ) {
+				if(limite.superaLimite(datosVehiculo)) {
 					System.out.println("\tVehiculo supera limite! (+"+(datosVehiculo.velocidadMedida-limite.getValue())+")");
 					Ticket t = new Ticket(datosVehiculo.patente, datosVehiculo.velocidadMedida, datosVehiculo.tipoVehiculo.name(), limite);
 					ticketService.save(t);

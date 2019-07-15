@@ -4,6 +4,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
+import sensorvelocidad.DatosVehiculo;
+
 @Entity
 @Table(name = "LIMITE")
 public class Limite extends AbsEntity{
@@ -34,6 +36,10 @@ public class Limite extends AbsEntity{
 		this.tipoClima = tipoClima;
 	}
 
+	public boolean superaLimite(DatosVehiculo datos) {
+		return datos.velocidadMedida > value;
+	}
+	
 	public Integer getValue() {
 		return value;
 	}

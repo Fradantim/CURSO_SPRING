@@ -12,9 +12,8 @@ import javax.persistence.MappedSuperclass;
 public abstract class AbsEntity {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name="ID")
-	protected UUID id;
+	protected UUID id = UUID.randomUUID();
 
 	public UUID getId() {
 		return id;

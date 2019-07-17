@@ -12,12 +12,7 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Component;
 
 import com.fradantim.sensorDeVelocidad.persistence.entites.Limite;
-import com.fradantim.sensorDeVelocidad.persistence.entites.Ticket;
 import com.fradantim.sensorDeVelocidad.persistence.service.LimiteService;
-import com.fradantim.sensorDeVelocidad.persistence.service.TicketService;
-
-import sensorclima.TipoClima;
-import sensorvelocidad.DatosVehiculo;
 
 @Component
 public class StartUpController implements InitializingBean {
@@ -34,12 +29,12 @@ public class StartUpController implements InitializingBean {
 	private LimiteService limiteService;
 
 	@Autowired
-	private TicketService ticketService;
+	private MultaController multaController;
 	
 	@Override
 	public void afterPropertiesSet() throws Exception {
 		cargarBBDD();
-		sensar();
+		multaController.init();
 	}
 	
 	private void cargarBBDD() {
@@ -65,36 +60,4 @@ public class StartUpController implements InitializingBean {
 		}
 	}
 
-	private void sensar() {
-		sensorvelocidad.Sensor sensorVelocidad = new sensorvelocidad.Sensor();
-		sensorclima.Sensor sensorClima = new sensorclima.Sensor();
-		long index = 0;
-		while (true) {
-			DatosVehiculo datosVehiculo = sensorVelocidad.sensarVehiculo();
-			TipoClima tipoClima = sensorClima.sensar();
-			System.out.println(index);
-			System.out.println("\t"+"PATENTE:"+datosVehiculo.patente);
-			System.out.println("\t"+"VELOCIDAD:"+datosVehiculo.velocidadMedida);
-			System.out.println("\t"+"TIPO VE:"+datosVehiculo.tipoVehiculo);
-			System.out.println("\t"+"CLIMA:"+tipoClima.name());
-			
-			Limite limite = limiteService.findByTipoVehiculoAndTipoClima(datosVehiculo.tipoVehiculo.name(), tipoClima.name());
-			if(limite==null) {
-				System.out.println("No se encontro limite!!!!!!! ----------");
-			} else {
-				System.out.println("\tLimite encontrado:"+limite.getValue());
-				if(limite.superaLimite(datosVehiculo)) {
-					System.out.println("\tVehiculo supera limite! (+"+(datosVehiculo.velocidadMedida-limite.getValue())+")");
-					Ticket t = new Ticket(datosVehiculo.patente, datosVehiculo.velocidadMedida, datosVehiculo.tipoVehiculo.name(), limite);
-					ticketService.save(t);
-					System.out.println("\tTicket guardado~~~");
-				} else {
-					
-				}
-			}
-			index++;
-			
-			System.out.println();
-		}
-	}
 }

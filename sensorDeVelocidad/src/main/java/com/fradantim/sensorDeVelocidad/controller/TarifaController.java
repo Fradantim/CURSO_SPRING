@@ -3,6 +3,7 @@ package com.fradantim.sensorDeVelocidad.controller;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 
 import com.fradantim.sensorDeVelocidad.persistence.entites.Limite;
@@ -29,7 +30,9 @@ public class TarifaController{
 	@Autowired
 	private ClimaService climaService;
 	
+	//Traigo el Interceptor que implementa VehiculoService
 	@Autowired
+	@Qualifier("VehiculoServiceI")
 	private VehiculoService vehiculoService;
 	
 	public void init() {
@@ -44,7 +47,6 @@ public class TarifaController{
 			logger.debug("Sensando nro "+index);
 			evaluarVehiculoClima(datosVehiculo, tipoClima);
 			index++;
-			
 		}
 	}
 	
@@ -66,7 +68,7 @@ public class TarifaController{
 				ticketService.save(t);
 				logger.debug("\tTicket guardado~~~");
 			} else {
-				
+				logger.debug("\tVehiculo no supera limite ("+(datosVehiculo.velocidadMedida-limite.getValue())+")");
 			}
 		}
 	}

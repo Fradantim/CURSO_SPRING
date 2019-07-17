@@ -65,7 +65,7 @@ public class TicketController{
 			if(limite.superaLimite(datosVehiculo)) {
 				logger.info("\tVehiculo supera limite! (+"+(datosVehiculo.velocidadMedida-limite.getValue())+")");
 				Ticket t = new Ticket(datosVehiculo.patente, datosVehiculo.velocidadMedida, datosVehiculo.tipoVehiculo.name(), limite);
-				ticketService.save(t);
+				t=ticketService.save(t);
 				logger.debug("\tTicket guardado~~~");
 			} else {
 				logger.debug("\tVehiculo no supera limite ("+(datosVehiculo.velocidadMedida-limite.getValue())+")");

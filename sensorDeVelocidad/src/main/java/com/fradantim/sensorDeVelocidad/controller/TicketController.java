@@ -17,9 +17,9 @@ import sensorclima.TipoClima;
 import sensorvelocidad.DatosVehiculo;
 
 @Controller
-public class TarifaController{
+public class TicketController{
 	
-	private static final Logger logger = LoggerFactory.getLogger(TarifaController.class);
+	private static final Logger logger = LoggerFactory.getLogger(TicketController.class);
 	
 	@Autowired
 	private LimiteService limiteService;

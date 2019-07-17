@@ -16,6 +16,7 @@ public class VehiculoServiceInterceptor extends VehiculoService{
 	
 	@Autowired
 	private VehiculoService vehiculoService;
+	// ^ Tengo que componer una clase concreta
 	
 	public 	DatosVehiculo getDatosVehiculo() {
 		logger.info("Se pidio la info de un vehiculo");

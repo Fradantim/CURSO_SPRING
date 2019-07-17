@@ -29,7 +29,7 @@ public class StartUpController implements InitializingBean {
 	private LimiteService limiteService;
 
 	@Autowired
-	private MultaController multaController;
+	private TarifaController multaController;
 	
 	@Override
 	public void afterPropertiesSet() throws Exception {

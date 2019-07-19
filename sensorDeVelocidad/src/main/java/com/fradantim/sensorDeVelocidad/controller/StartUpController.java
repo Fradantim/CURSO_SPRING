@@ -28,13 +28,9 @@ public class StartUpController implements InitializingBean {
 	@Autowired
 	private LimiteService limiteService;
 
-	@Autowired
-	private TicketController multaController;
-	
 	@Override
 	public void afterPropertiesSet() throws Exception {
 		cargarBBDD();
-		multaController.init();
 	}
 	
 	private void cargarBBDD() {

@@ -28,8 +28,8 @@ public class App
     public static void main( String[] args )
     {
         ApplicationContext appContext = new AnnotationConfigApplicationContext(AppConfig.class);
-        FiltroChoferes filtroChoferes = appContext.getBean(FiltroChoferes.class);
         
+        FiltroChoferes filtroChoferes = appContext.getBean(FiltroChoferes.class);
         
         System.out.println("getAll");
         for(Chofer chofer : filtroChoferes.getAll()) {
@@ -51,6 +51,12 @@ public class App
         System.out.println();
         System.out.println("getChoferesQueNoLesGustaSuTrabajoConAccidentes");
         for(Chofer chofer : filtroChoferes.getChoferesQueNoLesGustaSuTrabajoConAccidentes()) {
+        	System.out.println(chofer);
+        }
+        
+        System.out.println();
+        System.out.println("getChoferesQueNoLesGustaSuTrabajosSinAccidentes");
+        for(Chofer chofer : filtroChoferes.getChoferesQueNoLesGustaSuTrabajosSinAccidentes()) {
         	System.out.println(chofer);
         }
         

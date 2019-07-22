@@ -31,13 +31,19 @@ public class FiltroChoferes {
 	
 	public List<Chofer> getChoferesQueNoLesGustaSuTrabajoConAccidentes(){
 		return choferRepo.getChoferes().stream()
-				  .filter(c -> !c.getLeGustaSuTrabajo() && c.getCantAccidentes().compareTo(0) == 0)
+				  .filter(c -> !c.getLeGustaSuTrabajo() && c.getCantAccidentes().compareTo(0) > 0)
 				  .collect(Collectors.toList());
 	}
 	
 	public List<Chofer> getChoferesQueLesGustaSuTrabajoSinAccidentes() {
 		return choferRepo.getChoferes().stream()
 				  .filter(c -> c.getLeGustaSuTrabajo() && c.getCantAccidentes().equals(0))
+				  .collect(Collectors.toList());
+	}
+	
+	public List<Chofer> getChoferesQueNoLesGustaSuTrabajosSinAccidentes(){
+		return choferRepo.getChoferes().stream()
+				  .filter(c -> !c.getLeGustaSuTrabajo() && c.getCantAccidentes().equals(0))
 				  .collect(Collectors.toList());
 	}
 }

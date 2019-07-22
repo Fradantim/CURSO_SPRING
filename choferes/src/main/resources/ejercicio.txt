@@ -24,7 +24,7 @@ y cuatro metodos:
 getChoferesQueLesGustaSuTrabajoConAccidentes
 getChoferesQueNoLesGustaSuTrabajoConAccidentes
 getChoferesQueLesGustaSuTrabajoSinAccidentes
-getChoferesQueNoLesGustaSuTrabajoConAccidentes
+getChoferesQueNoLesGustaSuTrabajosSinAccidentes
 
 La forma de realizar la dependencia entre 
 

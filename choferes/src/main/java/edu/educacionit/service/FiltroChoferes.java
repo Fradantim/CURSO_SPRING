@@ -1,6 +1,7 @@
 package edu.educacionit.service;
 
 import java.util.List;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,21 +30,19 @@ public class FiltroChoferes {
 		  .collect(Collectors.toList());
 	}
 	
-	public List<Chofer> getChoferesQueNoLesGustaSuTrabajoConAccidentes(){
-		return choferRepo.getChoferes().stream()
-				  .filter(c -> !c.getLeGustaSuTrabajo() && c.getCantAccidentes().compareTo(0) > 0)
-				  .collect(Collectors.toList());
-	}
-	
+	//Implementacion in-line de Function
 	public List<Chofer> getChoferesQueLesGustaSuTrabajoSinAccidentes() {
-		return choferRepo.getChoferes().stream()
-				  .filter(c -> c.getLeGustaSuTrabajo() && c.getCantAccidentes().equals(0))
-				  .collect(Collectors.toList());
+		return getByFilterPredicate(c -> c.getLeGustaSuTrabajo() && c.getCantAccidentes().equals(0));
+	}
+
+	//Implementacion in-line de Function
+	public List<Chofer> getChoferesQueNoLesGustaSuTrabajosSinAccidentes(){
+		return getByFilterPredicate(c -> !c.getLeGustaSuTrabajo() && c.getCantAccidentes().equals(0));
 	}
 	
-	public List<Chofer> getChoferesQueNoLesGustaSuTrabajosSinAccidentes(){
+	public List<Chofer> getByFilterPredicate(Function<Chofer,Boolean> fn){
 		return choferRepo.getChoferes().stream()
-				  .filter(c -> !c.getLeGustaSuTrabajo() && c.getCantAccidentes().equals(0))
-				  .collect(Collectors.toList());
+			.filter(c -> fn.apply(c))
+			.collect(Collectors.toList());
 	}
 }

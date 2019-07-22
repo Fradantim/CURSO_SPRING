@@ -14,21 +14,13 @@ import edu.educacionit.model.Chofer;
 public class ChoferRepository {
 
 	private static final Faker FAKER = new Faker();
-	private static final Integer cantChoferes = 8;
+	private static final Integer CANT_CHOFERES = 8;
 	
-	private List<Chofer> choferesBD;
+	private static final List<Chofer> CHOFERES_BD = new ArrayList<Chofer>();
 	
-	public List<Chofer> getChoferes(){
-		if(choferesBD == null) {
-			fillBD();
-		}
-		return choferesBD;
-	}
-	
-	private void fillBD() {
-		choferesBD = new ArrayList<Chofer>();
-		for(int i=0; i<cantChoferes; i++) {
-			choferesBD.add(
+	static {
+		for(int i=0; i<CANT_CHOFERES; i++) {
+			CHOFERES_BD.add(
 					new Chofer(UUID.randomUUID(),
 							FAKER.name().firstName(),
 							FAKER.name().lastName(),
@@ -37,4 +29,9 @@ public class ChoferRepository {
 					);
 		}
 	}
+	
+	public List<Chofer> getChoferes(){
+		return CHOFERES_BD;
+	}
+	
 }

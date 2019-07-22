@@ -1,0 +1,56 @@
+Ejercicio.
+
+A partir de un proyecto maven (provisto por el profesor)
+
+crear la clase edu.educacionit.model.Chofer con los siguientes campos
+
+UUID id;
+String nombre;
+String apellido;
+boolean leGustaSuTrabajo;
+int cantAccidentes;
+
+Agregar la clase edu.educacionit.repository.Choferes
+con un metodo List<Chofer> getChoferes()
+
+Retorna 8 Choferes con diferentes configuraciones.
+
+crear la clase edu.educacionit.service.FiltroChoferes
+
+esta clase (FiltroChoferes), tendra una dependencia a edu.educacionit.repository.Choferes.
+
+y cuatro metodos:
+
+getChoferesQueLesGustaSuTrabajoConAccidentes
+getChoferesQueNoLesGustaSuTrabajoConAccidentes
+getChoferesQueLesGustaSuTrabajoSinAccidentes
+getChoferesQueNoLesGustaSuTrabajoConAccidentes
+
+La forma de realizar la dependencia entre 
+
+  edu.educacionit.service.FiltroChoferes
+  edu.educacionit.repository.Choferes
+
+puede ser a traves del constructor. ConstructorInjection
+
+@Autowired
+FiltroChoferes(Choferes choferes) {}
+
+puede ser a traves de un setter (setterInjection)
+@Autowired
+setRepoChoferes(Choferes choferes) {}
+
+puede ser a traves de memberInjection
+
+FiltroChoferes {
+    @Autowired
+    private Choferes choferes;
+
+}
+
+
+
+
+
+
+

@@ -6,8 +6,7 @@ public class Usuario {
     private String password;
     private String[] roles;
 
-    public Usuario() {
-    }
+    public Usuario() {}
     
     public Usuario(String id, String nombreUsuario, String password, String[] roles) {
         this.id = id;
